@@ -1,0 +1,272 @@
+/* section */
+.section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    /* background-color: aqua; */
+}
+
+.section > h2 {
+    font-size: var(--heading-font-size);
+    margin-bottom: 1rem;
+    font-family: var(--heading-font-family);
+    padding: 0 1rem;
+}
+
+.section .filterDiv {
+    display: flex;
+    /* background-color: antiquewhite; */
+    padding: 0.5rem 0;
+}
+.section .filterDiv p {
+    padding: 0.5rem 1rem;
+    background-color: #eee;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.section .filterDiv p svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 0.5rem;
+    fill: var(--background-color);
+    cursor: pointer;
+}
+.section .filterDiv button {
+    padding: 0.5rem 1rem;
+    background-color: var(--background-color);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.section .sectionLeft {
+    width: 100%;
+    display: flex;
+}
+.section .sectionLeftJobs {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+/* section -> JobCard */
+.jobCard {
+    width: 90%;
+    height: auto;
+    /* background-color: red; */
+    background-color: #fff;
+    margin: 1rem auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+    font-size: var(--normal-font-size);
+    /* border: 2px solid #eee; */
+    border-radius: 20px;
+    box-shadow: 0 -2px 6px 0 rgb(5 21 46 / 2%), 0 6px 12px 0 rgb(21 60 245 / 5%), 0 2px 6px 0 rgb(5 21 46 / 2%);
+}
+.jobCard .logo {
+    width: 100%;
+    max-width: 100px;
+    /* background-color: teal; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem;
+    margin: auto;
+}
+.jobCard .logo > div {
+    /* background-color: #15f519; */
+    width: calc(2rem + 4vw);
+    height: calc(2rem + 4vw);
+    border: 2px solid var(--background-color);
+    border-radius: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: cursive;
+    color: var(--background-color);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.jobCard .details {
+    width: 100%;
+    /* background-color: violet; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 1rem;
+    color: var(--color);
+    text-transform: capitalize;
+}
+.jobCard .details h2 {
+    font-size: var(--heading-font-size);
+    margin-bottom: 0.5rem;
+}
+.jobCard .details .details_extra {
+    display: flex;
+    align-items: center;
+}
+.jobCard .details_extra p {
+    min-width: 30%;
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 0.5rem 1rem;
+    background-color: var(--body-color);
+    margin-right: 1rem;
+    border-radius: 5px;
+    color: #555;
+    border: 1px solid #eee;
+}
+.jobCard .details_extra p:last-child{
+    margin-right: 0;
+}
+
+.jobCard .contact {
+    width: auto;
+    /* background-color: yellowgreen; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.jobCard .contact p:first-child {
+    display: flex;
+}
+.jobCard .contact svg {
+    width: 25px;
+    height: 25px;
+    margin-left: 0.2rem;
+    fill: var(--background-color);
+    transform: rotate(-90deg);
+}
+
+/* sidebar */
+.sidebar {
+    width: 30%;
+    height: fit-content;
+    /* background-color: tan; */
+    /* background-color: #fff; */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .sidebarChild {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarChild .sidebarChild_heading {
+    font-size: var(--heading-font-size);
+    font-family: var(--heading-font-family);
+    margin-bottom: 2rem;
+}
+.sidebar .sidebarChild_content li {
+    padding: 0.5rem 2rem;
+    color: var(--background-color);
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: 500ms;
+}
+.sidebar .sidebarChild_content li:hover {
+    background-color: rgba(21, 58, 245, 0.5);
+    color: #fff;
+}
+.categories {
+    height: 400px !important;
+}
+.categories .sidebarChild_content {
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.categories .sidebarChild_content::-webkit-scrollbar {
+    /* scrollbar-width: 1rem; */
+    background-color: var(--color);
+    border-radius: 10px;
+}
+.categories ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.categories ul li svg {
+    height: 20px;
+    fill: var(--background-color);
+    transition: 500ms;
+}
+.categories ul li:hover svg {
+    transform: translateX(10px);
+    fill: #fff;
+}
+
+.sidebarChild .sidebarChild_content .selected {
+    background-color: var(--background-color);
+    color: #fff;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .section .sectionLeftJobs{
+        width: 60%;
+    }
+    .jobCard {
+        flex-direction: column;
+    }
+    .jobCard .logo > div {
+        width: calc(3rem + 5vw);
+        height: calc(3rem + 5vw);
+    }
+
+    .jobCard .details .details_extra {
+        justify-content: space-around;
+    }
+    .jobCard .contact {
+        width: auto;
+        /* background-color: yellowgreen; */
+        flex-direction: row;
+
+        justify-content: space-around;
+        padding: 1rem 0 0;
+    }
+
+    .sidebar{
+        width: 40%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .section {
+        width: 100%;
+    }
+    .section .sectionLeft {
+        flex-direction: column;
+    }
+    .section .sectionLeftJobs {
+        width: 100%;
+    }
+
+    .jobCard .contact p{
+        font-size: 1rem;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}

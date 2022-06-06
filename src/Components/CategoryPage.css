@@ -1,0 +1,11 @@
+.categoryLoading{
+    height: 100vh;
+}
+
+.categoryPage{
+    margin-top: 10rem;
+    display: flex;
+}
+.categoryContent{
+    width: 70%;
+}
