@@ -19,7 +19,7 @@
 .section .filterDiv {
     display: flex;
     /* background-color: antiquewhite; */
-    padding: 0.5rem 0;
+    padding: 1rem;
 }
 .section .filterDiv p {
     padding: 0.5rem 1rem;
