@@ -89,7 +89,7 @@ const Section = ({ searchVal, getResults, currCategory, jobs, setJobType, jobTyp
                         )
                         :
                         (
-                            <h2>Nothing to show...</h2>
+                            <h2 className='noDataToShow'>Nothing to show...</h2>
                         )
                     }
                 </div>

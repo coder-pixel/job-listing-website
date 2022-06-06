@@ -33,6 +33,29 @@ const Sidebar = ({ currCategory, setJobType, jobType }) => {
             {/* <div className="sidebarChild">
                 <Searchbar />
             </div> */}
+            {currCategory ?
+                (
+                    <div className="sidebarChild jobNature">
+                        <h2 className="sidebarChild_heading">Job Nature</h2>
+                        <ul className="sidebarChild_content">
+                            {jobTypes.map(type => {
+                                return (
+                                    <li onClick={() => setJobType(type)} className={type == jobType ? "selected" : null}>
+                                        {type}
+                                    </li>
+                                )
+                            })}
+                            {/* <li onClick={() => setJobType("FullTime")}>Full time</li>
+                            <li onClick={() => setJobType("PartTime")}>Part time</li>
+                            <li onClick={() => setJobType("Hourly")}>Hourly</li> */}
+                        </ul>
+                    </div>
+                )
+                :
+                (
+                    null
+                )
+            }
             <div id="allCategories" className="sidebarChild categories">
                 {
                     loading ?
@@ -59,29 +82,6 @@ const Sidebar = ({ currCategory, setJobType, jobType }) => {
                         )
                 }
             </div>
-            {currCategory ?
-                (
-                    <div className="sidebarChild jobNature">
-                        <h2 className="sidebarChild_heading">Job Nature</h2>
-                        <ul className="sidebarChild_content">
-                            {jobTypes.map(type => {
-                                return (
-                                    <li onClick={() => setJobType(type)} className={type == jobType ? "selected" : null}>
-                                        {type}
-                                    </li>
-                                )
-                            })}
-                            {/* <li onClick={() => setJobType("FullTime")}>Full time</li>
-                            <li onClick={() => setJobType("PartTime")}>Part time</li>
-                            <li onClick={() => setJobType("Hourly")}>Hourly</li> */}
-                        </ul>
-                    </div>
-                )
-                :
-                (
-                    null
-                )
-            }
             {/* <div className="sidebarChild location">
                 <h2 className="sidebarChild_heading">Location</h2>
             </div> */}
