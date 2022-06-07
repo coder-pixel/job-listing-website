@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./AddPost.css"
 
-const AddPost = ({ jobObject, setJobObject }) => {
+const AddPost = ({ jobs, setJobs }) => {
+    console.log(jobs)
+    // const [jobObject, setJobObject] = useState()
+
     const [nameVal, setNameVal] = useState("")
     const [categoryVal, setCategoryVal] = useState("")
     const [regionVal, setRegionVal] = useState("")
@@ -12,8 +15,7 @@ const AddPost = ({ jobObject, setJobObject }) => {
 
     const [error, setError] = useState(false)
     const [submitted, setSubmitted] = useState(false)
-    
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -34,9 +36,10 @@ const AddPost = ({ jobObject, setJobObject }) => {
             }
 
             console.log(newJobObj)
-            setJobObject({...newJobObj})
+            // setJobObject(newJobObj)
+            setJobs([newJobObj, ...jobs])
 
-            console.log(jobObject)
+            // console.log(jobObject)
 
             setNameVal("")
             setCategoryVal("")
@@ -44,8 +47,22 @@ const AddPost = ({ jobObject, setJobObject }) => {
             setMinPayVal("")
             setContactNum("")
             setError(false)
+            setSubmitted(true)
         }
     }
+
+
+    // setting local storage
+    useEffect(() => {
+    //   const newJobs = [...jobObject, ...jobs]
+    //   console.log(newJobs)
+    //   // if(jobObject) 
+    //   setJobs(newJobs)
+      const jobsJson = JSON.stringify(jobs)
+      localStorage.setItem("jobs", jobsJson)
+    }, [jobs])
+
+
 
 
     return (

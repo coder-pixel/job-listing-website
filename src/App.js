@@ -13,9 +13,8 @@ function App() {
   const [jobType, setJobType] = useState("")
   const [searchVal, setSearchVal] = useState("")
   const [getResults, setGetResults] = useState(false)
-  const [jobs, setJobs] = useState(false)
+  const [jobs, setJobs] = useState([])
 
-  const [jobObject, setJobObject] = useState()
 
 
   // getting local storage
@@ -52,7 +51,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home searchVal={searchVal} setSearchVal={setSearchVal} getResults={getResults} setGetResults={setGetResults} jobs={jobs} setJobType={setJobType} />} />
         <Route path='/category/:categoryName' element={<CategoryPage jobType={jobType} setJobType={setJobType} />} />
-        <Route path='/addpost' element={<AddPost jobObject={jobObject} setJobObject={setJobObject} />} />
+        <Route path='/addpost' element={<AddPost jobs={jobs} setJobs={setJobs} />} />
       </Routes>
 
 
