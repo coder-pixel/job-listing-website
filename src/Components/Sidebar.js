@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { jobs } from "../jobs"
+import { jobsData as jobs } from "../jobs"
 import Loading from './Loading'
 import Searchbar from './Searchbar'
 
@@ -10,7 +10,8 @@ const Sidebar = ({ currCategory, setJobType, jobType }) => {
 
     const [loading, setLoading] = useState(true)
     const [categoryArr, setCategoryArr] = useState([])
-    // const [showJobType, setShowJobType] = useState(false)
+
+    const [showCategoryDiv, setShowCategoryDiv] = useState(false);  // for small devices, below 600px
 
     const categorySetter = () => {
         // let newArr = jobs.map(job => {
@@ -27,6 +28,23 @@ const Sidebar = ({ currCategory, setJobType, jobType }) => {
     useEffect(() => {
         categorySetter()
     }, [])
+
+
+    var x = window.matchMedia("(max-width: 600px)")
+
+
+    const ranFunc = (x) => {
+        if (x.matches) { // If media query matches
+            document.querySelector(".sectionLeft").style.flexDirection = "column-reverse";
+        } else {
+            document.querySelector(".sectionLeft").style.flexDirection = "row";
+        }
+    }
+    x.addListener(ranFunc)
+    useEffect(() => {
+        ranFunc(x)
+    }, [x])
+
 
     return (
         <div className='sidebar'>
@@ -56,7 +74,15 @@ const Sidebar = ({ currCategory, setJobType, jobType }) => {
                     null
                 )
             }
-            <div id="allCategories" className="sidebarChild categories">
+            <div id="allCategories" className={`${showCategoryDiv ? "showCategoryDiv" : null} sidebarChild categories`}>
+                <h2 onClick={() => setShowCategoryDiv(!showCategoryDiv)} className="sidebarChild_heading">
+                    {showCategoryDiv ?
+                        (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 5 15 L 5 17 L 27 17 L 27 15 Z" /></svg>)
+                        :
+                        (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" /></svg>)
+                    }
+                    Categories
+                </h2>
                 {
                     loading ?
                         (
@@ -65,7 +91,6 @@ const Sidebar = ({ currCategory, setJobType, jobType }) => {
                         :
                         (
                             <>
-                                <h2 className="sidebarChild_heading">Categories</h2>
                                 <ul className="sidebarChild_content">
                                     {categoryArr.map(category => {
                                         return (

@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import "./CategoryPage.css"
 import JobCard from './JobCard'
 
-import { jobs } from "../jobs"
+import { jobsData as jobs } from "../jobs"
 import Loading from './Loading'
 import Sidebar from './Sidebar'
 import Section from '../Section'

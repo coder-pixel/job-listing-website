@@ -97,9 +97,10 @@ button {
   transition: 500ms;
 }
 .navbar button:hover {
-  background-color: var(--color);
+  background-color: #fff;
   color: var(--background-color);
 }
+
 
 /* searchbar */
 .searchbar {

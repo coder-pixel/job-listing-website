@@ -14,9 +14,11 @@ const Header = () => {
                 {/* <li className='category_parent'>Categories</li> */}
                 {/* <li>About</li> */}
                 {/* <li>Contact</li> */}
-                <li>
-                    <button className="createPost">Add job</button>
-                </li>
+                <Link to="/addpost">
+                    <li>
+                        <button className="createPost">Add Job</button>
+                    </li>
+                </Link>
             </ul>
         </div>
     )
