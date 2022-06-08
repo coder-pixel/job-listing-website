@@ -7,7 +7,7 @@ const Header = () => {
             <div className="logoDiv">
                 {/* <img src="images/logo.svg" alt="" /> */}
                 <Link to="/">
-                    jobsLogo
+                    <img src="/images/projectLogo.png" alt="" />
                 </Link>
             </div>
             <ul className="navbar">

@@ -3,28 +3,52 @@ import { Link } from 'react-router-dom'
 import "./AddPost.css"
 
 const AddPost = ({ jobs, setJobs }) => {
-    console.log(jobs)
+    // console.log(jobs)
     // const [jobObject, setJobObject] = useState()
 
     const [nameVal, setNameVal] = useState("")
     const [categoryVal, setCategoryVal] = useState("")
     const [regionVal, setRegionVal] = useState("")
-    const [minPayVal, setMinPayVal] = useState()
-    const [contactNum, setContactNum] = useState()
+    const [minPayVal, setMinPayVal] = useState("")
+    const [contactNum, setContactNum] = useState("")
     // const [jobTypeVal, setJobTypeVal] = useState("")
 
     const [error, setError] = useState(false)
     const [submitted, setSubmitted] = useState(false)
 
+    // const handleError = () => {
+
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("submitted")
 
-        if (!nameVal || !categoryVal || !regionVal || !minPayVal || contactNum) setError(true)
-        else { setError(false) }
+        let err = false;
+        if (!nameVal || !categoryVal || !regionVal || !minPayVal || !contactNum) {
+            // setError(true)
+            err = true;
+            console.log("error: true")
+        } else {
+            // setError(false)
+            err = false;
+            console.log("error: false")
+        }
+        setError(err)
 
-        if (!error) {
+        console.log(error)
+
+        setJobsArr(err)
+    }
+
+    // useEffect(() => {
+
+    // }, [!error, submitted])
+
+    const setJobsArr = (err) => {
+        if (!err) {
+            setSubmitted(true)
+
             let newJobObj = {
                 id: Math.floor(Math.random() * 1000),
                 name: nameVal,
@@ -47,20 +71,20 @@ const AddPost = ({ jobs, setJobs }) => {
             setMinPayVal("")
             setContactNum("")
             setError(false)
-            setSubmitted(true)
+            // setSubmitted(false)
         }
     }
 
 
     // setting local storage
-    useEffect(() => {
-    //   const newJobs = [...jobObject, ...jobs]
-    //   console.log(newJobs)
-    //   // if(jobObject) 
-    //   setJobs(newJobs)
-      const jobsJson = JSON.stringify(jobs)
-      localStorage.setItem("jobs", jobsJson)
-    }, [jobs])
+    // useEffect(() => {
+    //     //   const newJobs = [...jobObject, ...jobs]
+    //     //   console.log(newJobs)
+    //     //   // if(jobObject) 
+    //     //   setJobs(newJobs)
+    //     const jobsJson = JSON.stringify(jobs)
+    //     localStorage.setItem("jobs", jobsJson)
+    // }, [jobs])
 
 
 
@@ -118,6 +142,7 @@ const AddPost = ({ jobs, setJobs }) => {
                         {error && !contactNum ? <span className='errorMsg'>*required</span> : null}
                     </div>
                     <input type="number" id='addPost_contact'
+                        maxLength={10}
                         value={contactNum}
                         onChange={(e) => setContactNum(e.target.value)}
                     />
@@ -134,7 +159,7 @@ const AddPost = ({ jobs, setJobs }) => {
                     <input type="radio" id='addPost_mimimalPay' />
                 </div> */}
 
-                {submitted ? <span className='successMsg'>Your Job is successfully posted, <Link to="/">See here</Link></span> : null}
+                {!error && submitted ? <span className='successMsg'>Your Job is successfully posted, <Link to="/">See here</Link> </span> : null}
             </form>
         </div>
     )

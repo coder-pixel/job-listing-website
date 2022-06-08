@@ -44,7 +44,6 @@
     /* background-color: aquamarine; */
     color: rgb(39, 225, 39);
     font-size: 1rem;
-    margin: .5rem 0 0;
     text-align: center;
 }
 .addPostForm .successMsg a{
@@ -76,5 +75,6 @@
     text-transform: uppercase;
     border-radius: 5px;
     letter-spacing: 1px;
-    margin: 2rem auto 0;
+    margin: 2rem auto 1rem;
+    cursor: pointer;
 }

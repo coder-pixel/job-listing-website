@@ -208,9 +208,7 @@
     background-color: rgba(21, 58, 245, 0.5);
     color: #fff;
 }
-#allCategories {
-    height: 400px;
-}
+
 .categories .sidebarChild_content {
     overflow-y: auto;
     scrollbar-width: none;

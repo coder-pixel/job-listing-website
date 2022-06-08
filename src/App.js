@@ -21,8 +21,12 @@ function App() {
   useEffect(() => {
     const getJobsTemp = localStorage.getItem("jobs")
     const jobsLoaded = JSON.parse(getJobsTemp);
-    if (jobsLoaded) {
+    // setJobs(jobsLoaded)
+    if (jobsLoaded.length > 0) {
+      console.log(jobsLoaded.length)
       setJobs(jobsLoaded)
+    }else{
+      setJobs(jobsData)
     }
   }, [])
 
@@ -39,9 +43,9 @@ function App() {
   // }, [jobs])
 
   useEffect(() => {
-    const jobsJson = JSON.stringify(jobsData)
+    const jobsJson = JSON.stringify(jobs)
     localStorage.setItem("jobs", jobsJson)
-  }, [])
+  }, [jobs])
 
 
   return (
