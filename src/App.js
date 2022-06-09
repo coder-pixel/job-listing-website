@@ -1,34 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
+
 import AddPost from './Components/AddPost';
 import CategoryPage from './Components/CategoryPage';
 import Header from './Components/Header';
 import Home from './Components/Home';
+import { SiteContext } from './ContextProvider';
 
-import { jobsData } from "./jobs";
 
 
 function App() {
-  const [jobType, setJobType] = useState("")
-  const [searchVal, setSearchVal] = useState("")
-  const [getResults, setGetResults] = useState(false)
-  const [jobs, setJobs] = useState([])
 
 
-
-  // getting local storage
-  useEffect(() => {
-    const getJobsTemp = localStorage.getItem("jobs")
-    const jobsLoaded = JSON.parse(getJobsTemp);
-    // setJobs(jobsLoaded)
-    if (jobsLoaded.length > 0) {
-      console.log(jobsLoaded.length)
-      setJobs(jobsLoaded)
-    }else{
-      setJobs(jobsData)
-    }
-  }, [])
+  const {
+    jobType,
+    setJobType,
+    searchVal,
+    setSearchVal,
+    getResults,
+    setGetResults,
+    jobs, setJobs
+  } = useContext(SiteContext)
 
 
 
@@ -42,19 +35,14 @@ function App() {
   //   localStorage.setItem("jobs", jobsJson)
   // }, [jobs])
 
-  useEffect(() => {
-    const jobsJson = JSON.stringify(jobs)
-    localStorage.setItem("jobs", jobsJson)
-  }, [jobs])
-
 
   return (
     <div className="App">
       <Header />
 
       <Routes>
-        <Route exact path='/' element={<Home searchVal={searchVal} setSearchVal={setSearchVal} getResults={getResults} setGetResults={setGetResults} jobs={jobs} setJobType={setJobType} />} />
-        <Route path='/category/:categoryName' element={<CategoryPage jobType={jobType} setJobType={setJobType} />} />
+        <Route exact path='/' element={<Home />} />
+        <Route path='/category/:categoryName' element={<CategoryPage />} />
         <Route path='/addpost' element={<AddPost jobs={jobs} setJobs={setJobs} />} />
       </Routes>
 

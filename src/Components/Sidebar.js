@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { SiteContext } from '../ContextProvider'
 import { jobsData as jobs } from "../jobs"
 import Loading from './Loading'
 import Searchbar from './Searchbar'
 
-const Sidebar = ({ currCategory, setJobType, jobType }) => {
+const Sidebar = () => {
+
+    const { jobs, currCategory, setJobType, jobType } = useContext(SiteContext)
+
     const jobTypes = ["FullTime", "PartTime", "Hourly"]
     console.log(currCategory)
 

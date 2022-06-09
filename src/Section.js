@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useLocation } from 'react-router'
 import JobCard from './Components/JobCard'
 import Sidebar from './Components/Sidebar'
 import "./Section.css"
-import { Link } from 'react-router-dom'
+import { SiteContext } from './ContextProvider'
 
-const Section = ({ searchVal, getResults, currCategory, jobs, setJobType, jobType }) => {
+const Section = ({ jobs }) => {
+    const { searchVal, getResults, currCategory, setJobType, jobType, currLocation, setCurrLocation } = useContext(SiteContext)
+
     const location = useLocation()
+    setCurrLocation(location.pathname)
+    console.log(currLocation)
+
 
     // const [newJobsArr, setNewJobsArr] = useState([])
 
@@ -28,9 +33,9 @@ const Section = ({ searchVal, getResults, currCategory, jobs, setJobType, jobTyp
 
     return (
         <div className="section">
-            {location.pathname == "/" ?
+            {currLocation == "/" ?
                 (
-                    getResults ?
+                    searchVal && getResults ?
                         (
                             <h2>Results: {searchVal}</h2>
                         )
@@ -94,7 +99,7 @@ const Section = ({ searchVal, getResults, currCategory, jobs, setJobType, jobTyp
                     }
                 </div>
 
-                <Sidebar currCategory={currCategory} setJobType={setJobType} jobType={jobType} />
+                <Sidebar />
             </div>
         </div>
     )

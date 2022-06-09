@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import "./CategoryPage.css"
 import JobCard from './JobCard'
 
-import { jobsData as jobs } from "../jobs"
+// import { jobsData as jobs } from "../jobs"
 import Loading from './Loading'
-import Sidebar from './Sidebar'
 import Section from '../Section'
+import { SiteContext } from '../ContextProvider'
 
-const CategoryPage = ({ jobType, setJobType }) => {
+const CategoryPage = () => {
     // console.log(jobs)
     // const location = useLocation()
     // console.log(location.pathname)
-    console.log(jobType)
+
+    const { jobs, jobType, setJobType, currCategory, setCurrCategory } = useContext(SiteContext)
 
     const match = useParams();
     console.log(match);
@@ -31,9 +32,10 @@ const CategoryPage = ({ jobType, setJobType }) => {
 
     const settingCurrCategoryJobs = () => {
         // console.log(currCategory)
+        setCurrCategory(match.categoryName)
         let newJobs = jobs.filter(job => job.category == match.categoryName)
         newJobs = jobType ? newJobs.filter(job => job.jobType == jobType) : newJobs;
-        
+
         setCurrCategoryJobs(newJobs)
 
         // setTimeout(() => {
@@ -58,7 +60,7 @@ const CategoryPage = ({ jobType, setJobType }) => {
                 :
                 (
                     <div className='categoryPage'>
-                        <Section currCategory={match.categoryName} jobs={currCategoryJobs} setJobType={setJobType} jobType={jobType} />
+                        <Section jobs={currCategoryJobs} />
 
                         {/* <div className="categoryContent">
                             <h2>{match.categoryName}</h2>
@@ -72,9 +74,6 @@ const CategoryPage = ({ jobType, setJobType }) => {
                         </div>
                         <Sidebar jobs={jobs} /> */}
                     </div>
-
-
-
                 )
             }
         </>

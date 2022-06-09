@@ -11,7 +11,7 @@ const AddPost = ({ jobs, setJobs }) => {
     const [regionVal, setRegionVal] = useState("")
     const [minPayVal, setMinPayVal] = useState("")
     const [contactNum, setContactNum] = useState("")
-    // const [jobTypeVal, setJobTypeVal] = useState("")
+    const [jobTypeVal, setJobTypeVal] = useState("")
 
     const [error, setError] = useState(false)
     const [submitted, setSubmitted] = useState(false)
@@ -55,7 +55,7 @@ const AddPost = ({ jobs, setJobs }) => {
                 category: categoryVal,
                 locality: regionVal,
                 minimalPay: minPayVal,
-                jobType: "PartTime",
+                jobType: jobTypeVal,
                 contact: contactNum,
             }
 
@@ -70,6 +70,7 @@ const AddPost = ({ jobs, setJobs }) => {
             setRegionVal("")
             setMinPayVal("")
             setContactNum("")
+            setJobTypeVal("")
             setError(false)
             // setSubmitted(false)
         }
@@ -86,13 +87,70 @@ const AddPost = ({ jobs, setJobs }) => {
     //     localStorage.setItem("jobs", jobsJson)
     // }, [jobs])
 
-
+    const fields = [
+        {
+            txtName: "Name",
+            type: "text",
+            inpValue: nameVal,
+            inpValueFunc: setNameVal
+        },
+        {
+            txtName: "Job Title",
+            type: "text",
+            inpValue: categoryVal,
+            inpValueFunc: setCategoryVal
+        },
+        {
+            txtName: "Region",
+            type: "text",
+            inpValue: regionVal,
+            inpValueFunc: setRegionVal
+        },
+        {
+            txtName: "Minimum Pay",
+            type: "number",
+            inpValue: minPayVal,
+            inpValueFunc: setMinPayVal
+        },
+        {
+            txtName: "Contact No.",
+            type: "number",
+            inpValue: contactNum,
+            inpValueFunc: setContactNum
+        },
+    ]
 
 
     return (
         <div className='addPost'>
             <form onSubmit={handleSubmit} className="addPostForm">
-                <div className="addPostField addPost_name">
+
+                {fields.map(field => {
+                    return (
+                        <div className="addPostField">
+                            <div className="aa">
+                                <label for={`addPost_${field.inpValue}`}>{field.txtName}</label>
+                                {error && !nameVal ? <span className='errorMsg'>*required</span> : null}
+                            </div>
+                            <input type={field.type} id='addPost_name'
+                                value={field.inpValue}
+                                onChange={(e) => field.inpValueFunc(e.target.value)}
+                            />
+                        </div>
+                    )
+                })}
+
+                <div className="addPostField">
+                    <span>Work Type</span>
+                    <div className="jobTypesDiv">
+                        <div onClick={() => setJobTypeVal("FullTime")} className={jobTypeVal == "FullTime" ? "selected" : null}>Full Time</div>
+                        <div onClick={() => setJobTypeVal("PartTime")} className={jobTypeVal == "PartTime" ? "selected" : null}>Part Time</div>
+                        <div onClick={() => setJobTypeVal("Hourly")} className={jobTypeVal == "Hourly" ? "selected" : null}>Hourly</div>
+                    </div>
+                </div>
+
+
+                {/* <div className="addPostField addPost_name">
                     <div className="aa">
                         <label for="addPost_name">Name</label>
                         {error && !nameVal ? <span className='errorMsg'>*required</span> : null}
@@ -101,9 +159,8 @@ const AddPost = ({ jobs, setJobs }) => {
                         value={nameVal}
                         onChange={(e) => setNameVal(e.target.value)}
                     />
-                    {/* {showErrMsg && error == "name" ? <span className='errorMsg'>This field is required</span> : null} */}
-                </div>
-                <div className="addPostField addPost_category">
+                </div> */}
+                {/* <div className="addPostField addPost_category">
                     <div className="aa">
                         <label for="addPost_category">Job Title</label>
                         {error && !categoryVal ? <span className='errorMsg'>*required</span> : null}
@@ -112,7 +169,6 @@ const AddPost = ({ jobs, setJobs }) => {
                         value={categoryVal}
                         onChange={(e) => setCategoryVal(e.target.value)}
                     />
-                    {/* {showErrMsg && error == "category" ? <span className='errorMsg'>This field is required</span> : null} */}
                 </div>
                 <div className="addPostField addPost_locality">
                     <div className="aa">
@@ -123,7 +179,6 @@ const AddPost = ({ jobs, setJobs }) => {
                         value={regionVal}
                         onChange={(e) => setRegionVal(e.target.value)}
                     />
-                    {/* {showErrMsg && error == "region" ? <span className='errorMsg'>This field is required</span> : null} */}
                 </div>
                 <div className="addPostField addPost_mimimalPay">
                     <div className="aa">
@@ -134,7 +189,6 @@ const AddPost = ({ jobs, setJobs }) => {
                         value={minPayVal}
                         onChange={(e) => setMinPayVal(e.target.value)}
                     />
-                    {/* {showErrMsg && error == "pay" ? <span className='errorMsg'>This field is required</span> : null} */}
                 </div>
                 <div className="addPostField addPost_contact">
                     <div className="aa">
@@ -142,12 +196,10 @@ const AddPost = ({ jobs, setJobs }) => {
                         {error && !contactNum ? <span className='errorMsg'>*required</span> : null}
                     </div>
                     <input type="number" id='addPost_contact'
-                        maxLength={10}
                         value={contactNum}
                         onChange={(e) => setContactNum(e.target.value)}
                     />
-                    {/* {showErrMsg && error == "pay" ? <span className='errorMsg'>This field is required</span> : null} */}
-                </div>
+                </div> */}
 
                 <button type="submit">Add</button>
                 {/* <div className="addPostField addPost_jobType">

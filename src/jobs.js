@@ -67,7 +67,7 @@ export const jobsData = [
         category: "Peon",
         locality: "Noida",
         minimalPay: 20000,
-        jobType: "FullTime ",
+        jobType: "PartTime ",
         contact: "7609617693"
     },
     {

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
+import { SiteContext } from '../ContextProvider';
 import Searchbar from './Searchbar'
 
 const JobCard = ({ job }) => {
@@ -12,7 +14,9 @@ const JobCard = ({ job }) => {
             </div>
             <div className="details">
                 <h4>{name}</h4>
-                <h2>{category}</h2>
+                <Link to={`/category/${category}`}>
+                    <h2>{category}</h2>
+                </Link>
                 <div className="details_extra">
                     <p>{locality}</p>
                     <p>{jobType}</p>

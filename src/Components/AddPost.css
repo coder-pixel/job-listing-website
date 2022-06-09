@@ -64,6 +64,26 @@
     background-color: #eee;
     color: var(--background-color);
 }
+.addPostField .jobTypesDiv{
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.addPostField .jobTypesDiv > div{
+    background-color: #eee;
+    color: var(--color);
+    padding: .4rem 1rem;
+    margin: 0;
+}
+.addPostField .jobTypesDiv > div:hover{
+    cursor: pointer;
+    opacity: .8;
+}
+.addPostField .jobTypesDiv > div.selected{
+    background-color: var(--background-color);
+    color: #fff;
+}
 
 .addPostForm button{
     display: block;
@@ -77,4 +97,7 @@
     letter-spacing: 1px;
     margin: 2rem auto 1rem;
     cursor: pointer;
+}
+.addPostForm button:hover{
+    opacity: .8;
 }
