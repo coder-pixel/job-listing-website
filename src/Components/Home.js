@@ -12,7 +12,7 @@ const Home = () => {
         <div className='home'>
             <div className="heroSection">
                 <h1>Hiring Someone is now more easy than ever!</h1>
-                <p>Jobs is a curated job board of the best jobs for developers, designers and marketers in the tech industry.</p>
+                <p>`QuickHire' is a curated job board for all the daily wage workers, looking to be hired and want to have an online presence!</p>
                 <div className="heroSection_Searchbar">
                     <Searchbar />
                 </div>
