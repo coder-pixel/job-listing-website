@@ -31,7 +31,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         categorySetter()
-    }, [])
+    }, [jobs])
 
 
     var x = window.matchMedia("(max-width: 600px)")

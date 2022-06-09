@@ -12,6 +12,7 @@ const AddPost = ({ jobs, setJobs }) => {
     const [minPayVal, setMinPayVal] = useState("")
     const [contactNum, setContactNum] = useState("")
     const [jobTypeVal, setJobTypeVal] = useState("")
+    const [image, setImage] = useState(null)
 
     const [error, setError] = useState(false)
     const [submitted, setSubmitted] = useState(false)
@@ -23,9 +24,11 @@ const AddPost = ({ jobs, setJobs }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("submitted")
+        console.log(image)
+
 
         let err = false;
-        if (!nameVal || !categoryVal || !regionVal || !minPayVal || !contactNum) {
+        if (!nameVal || !categoryVal || !regionVal || !minPayVal || !contactNum || !jobTypeVal) {
             // setError(true)
             err = true;
             console.log("error: true")
@@ -39,6 +42,7 @@ const AddPost = ({ jobs, setJobs }) => {
         console.log(error)
 
         setJobsArr(err)
+
     }
 
     // useEffect(() => {
@@ -120,6 +124,11 @@ const AddPost = ({ jobs, setJobs }) => {
         },
     ]
 
+    // const onImageChange = (event) => {
+    //     if(event.target.files && event.target.files[0]){
+    //         setImage(URL.createObjectURL(event.target.files[0]))
+    //     }
+    // }
 
     return (
         <div className='addPost'>
@@ -141,13 +150,19 @@ const AddPost = ({ jobs, setJobs }) => {
                 })}
 
                 <div className="addPostField">
-                    <span>Work Type</span>
+                    <div className="aa">
+                        <span>Work Type</span>
+                        {error && !jobTypeVal ? <span className='errorMsg'>*required</span> : null}
+                    </div>
                     <div className="jobTypesDiv">
                         <div onClick={() => setJobTypeVal("FullTime")} className={jobTypeVal == "FullTime" ? "selected" : null}>Full Time</div>
                         <div onClick={() => setJobTypeVal("PartTime")} className={jobTypeVal == "PartTime" ? "selected" : null}>Part Time</div>
                         <div onClick={() => setJobTypeVal("Hourly")} className={jobTypeVal == "Hourly" ? "selected" : null}>Hourly</div>
                     </div>
                 </div>
+
+                {/* <img src={image} alt="" />
+                <input type="file" onChange={onImageChange} /> */}
 
 
                 {/* <div className="addPostField addPost_name">

@@ -2,6 +2,7 @@ export const jobsData = [
     {
         id: 1,
         name: "Raju",
+        profileImg: "snjds.jpg",
         category: "Painter",
         locality: "Delhi",
         minimalPay: 1000,
